@@ -79,8 +79,8 @@ function show(value, index, arrList) {
     let images0 = document.createElement('img');
     images0.src = value.photos[0];
 
-    images0.classList[0] = "image0";
-    images0.classList[1] = "active";
+    images0.className= "image0";
+    images0.classList.add("active");
     listItems.appendChild(images0);
 
     let images1 = document.createElement('img');
