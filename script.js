@@ -74,33 +74,33 @@ function show(value, index, arrList) {
     rightDiv.appendChild(unList);
 
     let listItems = document.createElement('li');
+    listItems.id = "list";
     unList.appendChild(listItems);
 
     let images0 = document.createElement('img');
     images0.src = value.photos[0];
-
-    images0.className= "image0";
-    images0.classList.add("active");
+    images0.className = "active";
+    images0.classList.add("image");
     listItems.appendChild(images0);
 
     let images1 = document.createElement('img');
     images1.src = value.photos[1];
-    images1.classList = "image1";
+    images1.classList = "image";
     listItems.appendChild(images1);
 
     let images2 = document.createElement('img');
     images2.src = value.photos[2];
-    images2.classList = "image2";
+    images2.classList = "image";
     listItems.appendChild(images2);
 
     let images3 = document.createElement('img');
     images3.src = value.photos[3];
-    images3.classList = "image3";
+    images3.classList = "image";
     listItems.appendChild(images3);
 
     let images4 = document.createElement('img');
     images4.src = value.photos[4];
-    images4.classList = "image4";
+    images4.classList = "image";
     listItems.appendChild(images4);
 
     // let images5 = document.createElement('img');
@@ -116,6 +116,53 @@ function show(value, index, arrList) {
     let prodPrePage = document.getElementById('productPreviewPage')
     prodPrePage.appendChild(leftDiv);
     prodPrePage.appendChild(rightDiv);
+
+    // ---------------- Change Preview Image OnClick -------
+    function clickImageforPreview() {
+        // image 0
+        images0.addEventListener("click", function () {
+            previewImage.src = value.photos[0];
+        });
+        // image 1
+        images1.addEventListener("click", function () {
+            previewImage.src = value.photos[1];
+        });
+        // image 2
+        images2.addEventListener("click", function () {
+            previewImage.src = value.photos[2];
+        });
+        // image 3
+        images3.addEventListener("click", function () {
+            previewImage.src = value.photos[3];
+        });
+        // image 4
+        images4.addEventListener("click", function () {
+            previewImage.src = value.photos[4];
+        });
+        // Toggle Active Class
+        // $(document).on("click", "previewImage img", function () {
+        //     $(this)
+        //.addClass("active");
+        //.siblings();
+        // .removeClass("active");
+        // });
+
+        const change = src => {
+            document.getElementsByClassName('previewImg').src = src
+        }
+        let images = document.getElementsByClassName('image');
+        for (let i = 0; i < images.length; i++) {
+            // currClk[0].className.remove("active");
+            this.className -= " active";
+
+            images[i].addEventListener("click", function () {
+                var currClk = document.getElementsByClassName("active");
+                currClk[0].className = currClk[0].className.replace("active", "");
+                this.className += " active";
+            });
+        }
+    }
+    clickImageforPreview()
 }
 
 show(productData);
